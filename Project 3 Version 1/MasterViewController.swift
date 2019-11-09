@@ -12,15 +12,17 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
-
-
+    
+    //var volumes = ["Nephi", "Lehi", "Jacob"]
+    var volumes: [Book] = GeoDatabase.shared.getVolumes()
+    static var selectedVolume: Int = Int()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
+        //navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
+        //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        //navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -40,8 +42,9 @@ class MasterViewController: UITableViewController {
     }
 
     // MARK: - Segues
-
+    //Edit this for selecting the books of the volume
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let object = objects[indexPath.row] as! NSDate
@@ -52,6 +55,16 @@ class MasterViewController: UITableViewController {
                 detailViewController = controller
             }
         }
+        /*if segue.identifier == "showBookViewController" {
+            print("got it")
+            print(segue.destination)
+            //if let controller = segue.destination as? UINavigationController{
+                //let controller2 = segue.destination as! BookViewController
+                //controller2.selectedVolume = selectedVolume
+            
+            //}
+            
+        }*/
     }
 
     // MARK: - Table View
@@ -61,13 +74,16 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        //return objects.count
+        return volumes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        //let object = objects[indexPath.row] as! NSDate
+        //cell.textLabel!.text = object.description
+        let volume = volumes[indexPath.row]
+        cell.textLabel!.text = volume.fullName
         return cell
     }
 
@@ -83,6 +99,14 @@ class MasterViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("something silly")
+        //Grab the correct volume to send to next table
+        MasterViewController.selectedVolume = volumes[indexPath.row].id
+        //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
+        
     }
 
 

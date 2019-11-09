@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014EF526237731B40078D534 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF525237731B40078D534 /* BookViewController.swift */; };
 		01E1BFFB236E307000C6A5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFA236E307000C6A5FB /* AppDelegate.swift */; };
 		01E1BFFD236E307000C6A5FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFC236E307000C6A5FB /* SceneDelegate.swift */; };
 		01E1BFFF236E307000C6A5FB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFE236E307000C6A5FB /* MasterViewController.swift */; };
@@ -14,9 +15,24 @@
 		01E1C004236E307000C6A5FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C002236E307000C6A5FB /* Main.storyboard */; };
 		01E1C006236E307200C6A5FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C005236E307200C6A5FB /* Assets.xcassets */; };
 		01E1C009236E307200C6A5FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C007236E307200C6A5FB /* LaunchScreen.storyboard */; };
+		01E1C01E236E330800C6A5FB /* GeoPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C011236E330700C6A5FB /* GeoPlace.swift */; };
+		01E1C01F236E330800C6A5FB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C012236E330700C6A5FB /* String+Extensions.swift */; };
+		01E1C020236E330800C6A5FB /* DatabaseClassDiagram.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C013236E330700C6A5FB /* DatabaseClassDiagram.pdf */; };
+		01E1C021236E330800C6A5FB /* ScriptureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C014236E330700C6A5FB /* ScriptureRenderer.swift */; };
+		01E1C022236E330800C6A5FB /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C015236E330700C6A5FB /* Book.swift */; };
+		01E1C023236E330800C6A5FB /* GeoDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C016236E330700C6A5FB /* GeoDatabase.swift */; };
+		01E1C024236E330800C6A5FB /* GeoPlaceCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C017236E330700C6A5FB /* GeoPlaceCollector.swift */; };
+		01E1C025236E330800C6A5FB /* geo.21.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C018236E330700C6A5FB /* geo.21.sqlite */; };
+		01E1C026236E330800C6A5FB /* geocode.js in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C019236E330700C6A5FB /* geocode.js */; };
+		01E1C027236E330800C6A5FB /* Scripture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C01A236E330800C6A5FB /* Scripture.swift */; };
+		01E1C028236E330800C6A5FB /* GeoTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C01B236E330800C6A5FB /* GeoTag.swift */; };
+		01E1C029236E330800C6A5FB /* GeoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1C01C236E330800C6A5FB /* GeoCategory.swift */; };
+		01E1C02A236E330800C6A5FB /* scripture.css in Resources */ = {isa = PBXBuildFile; fileRef = 01E1C01D236E330800C6A5FB /* scripture.css */; };
+		0D76DD0424B13419EA924BAD /* Pods_Project_3_Version_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A230A281E4C07BDBC3BDF2B /* Pods_Project_3_Version_1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		014EF525237731B40078D534 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		01E1BFF7236E307000C6A5FB /* Project 3 Version 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 3 Version 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E1BFFA236E307000C6A5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01E1BFFC236E307000C6A5FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +42,22 @@
 		01E1C005236E307200C6A5FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01E1C008236E307200C6A5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01E1C00A236E307200C6A5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01E1C011236E330700C6A5FB /* GeoPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoPlace.swift; sourceTree = "<group>"; };
+		01E1C012236E330700C6A5FB /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		01E1C013236E330700C6A5FB /* DatabaseClassDiagram.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DatabaseClassDiagram.pdf; sourceTree = "<group>"; };
+		01E1C014236E330700C6A5FB /* ScriptureRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptureRenderer.swift; sourceTree = "<group>"; };
+		01E1C015236E330700C6A5FB /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		01E1C016236E330700C6A5FB /* GeoDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDatabase.swift; sourceTree = "<group>"; };
+		01E1C017236E330700C6A5FB /* GeoPlaceCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoPlaceCollector.swift; sourceTree = "<group>"; };
+		01E1C018236E330700C6A5FB /* geo.21.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = geo.21.sqlite; sourceTree = "<group>"; };
+		01E1C019236E330700C6A5FB /* geocode.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = geocode.js; sourceTree = "<group>"; };
+		01E1C01A236E330800C6A5FB /* Scripture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scripture.swift; sourceTree = "<group>"; };
+		01E1C01B236E330800C6A5FB /* GeoTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoTag.swift; sourceTree = "<group>"; };
+		01E1C01C236E330800C6A5FB /* GeoCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoCategory.swift; sourceTree = "<group>"; };
+		01E1C01D236E330800C6A5FB /* scripture.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = scripture.css; sourceTree = "<group>"; };
+		2A230A281E4C07BDBC3BDF2B /* Pods_Project_3_Version_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_3_Version_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95151487817796F64517F672 /* Pods-Project 3 Version 1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project 3 Version 1.debug.xcconfig"; path = "Target Support Files/Pods-Project 3 Version 1/Pods-Project 3 Version 1.debug.xcconfig"; sourceTree = "<group>"; };
+		C16A73606191A7E0A5D145C4 /* Pods-Project 3 Version 1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project 3 Version 1.release.xcconfig"; path = "Target Support Files/Pods-Project 3 Version 1/Pods-Project 3 Version 1.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D76DD0424B13419EA924BAD /* Pods_Project_3_Version_1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,8 +75,11 @@
 		01E1BFEE236E307000C6A5FB = {
 			isa = PBXGroup;
 			children = (
+				01E1C010236E32D600C6A5FB /* Project Assets */,
 				01E1BFF9236E307000C6A5FB /* Project 3 Version 1 */,
 				01E1BFF8236E307000C6A5FB /* Products */,
+				B294808CE8BE965405958380 /* Pods */,
+				D2DD7C6758C2DC28DFEE9E7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,8 +102,46 @@
 				01E1C005236E307200C6A5FB /* Assets.xcassets */,
 				01E1C007236E307200C6A5FB /* LaunchScreen.storyboard */,
 				01E1C00A236E307200C6A5FB /* Info.plist */,
+				014EF525237731B40078D534 /* BookViewController.swift */,
 			);
 			path = "Project 3 Version 1";
+			sourceTree = "<group>";
+		};
+		01E1C010236E32D600C6A5FB /* Project Assets */ = {
+			isa = PBXGroup;
+			children = (
+				01E1C015236E330700C6A5FB /* Book.swift */,
+				01E1C013236E330700C6A5FB /* DatabaseClassDiagram.pdf */,
+				01E1C018236E330700C6A5FB /* geo.21.sqlite */,
+				01E1C01C236E330800C6A5FB /* GeoCategory.swift */,
+				01E1C019236E330700C6A5FB /* geocode.js */,
+				01E1C016236E330700C6A5FB /* GeoDatabase.swift */,
+				01E1C011236E330700C6A5FB /* GeoPlace.swift */,
+				01E1C017236E330700C6A5FB /* GeoPlaceCollector.swift */,
+				01E1C01B236E330800C6A5FB /* GeoTag.swift */,
+				01E1C01D236E330800C6A5FB /* scripture.css */,
+				01E1C01A236E330800C6A5FB /* Scripture.swift */,
+				01E1C014236E330700C6A5FB /* ScriptureRenderer.swift */,
+				01E1C012236E330700C6A5FB /* String+Extensions.swift */,
+			);
+			path = "Project Assets";
+			sourceTree = "<group>";
+		};
+		B294808CE8BE965405958380 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95151487817796F64517F672 /* Pods-Project 3 Version 1.debug.xcconfig */,
+				C16A73606191A7E0A5D145C4 /* Pods-Project 3 Version 1.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D2DD7C6758C2DC28DFEE9E7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A230A281E4C07BDBC3BDF2B /* Pods_Project_3_Version_1.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01E1C00D236E307200C6A5FB /* Build configuration list for PBXNativeTarget "Project 3 Version 1" */;
 			buildPhases = (
+				72027BCF261F348E5668C76A /* [CP] Check Pods Manifest.lock */,
 				01E1BFF3236E307000C6A5FB /* Sources */,
 				01E1BFF4236E307000C6A5FB /* Frameworks */,
 				01E1BFF5236E307000C6A5FB /* Resources */,
+				B5150CEAAA8E0EFB3D602A0C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,22 +204,78 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E1C020236E330800C6A5FB /* DatabaseClassDiagram.pdf in Resources */,
+				01E1C026236E330800C6A5FB /* geocode.js in Resources */,
+				01E1C025236E330800C6A5FB /* geo.21.sqlite in Resources */,
 				01E1C009236E307200C6A5FB /* LaunchScreen.storyboard in Resources */,
 				01E1C006236E307200C6A5FB /* Assets.xcassets in Resources */,
 				01E1C004236E307000C6A5FB /* Main.storyboard in Resources */,
+				01E1C02A236E330800C6A5FB /* scripture.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		72027BCF261F348E5668C76A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Project 3 Version 1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5150CEAAA8E0EFB3D602A0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project 3 Version 1/Pods-Project 3 Version 1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project 3 Version 1/Pods-Project 3 Version 1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Project 3 Version 1/Pods-Project 3 Version 1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		01E1BFF3236E307000C6A5FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E1C023236E330800C6A5FB /* GeoDatabase.swift in Sources */,
+				01E1C022236E330800C6A5FB /* Book.swift in Sources */,
 				01E1BFFB236E307000C6A5FB /* AppDelegate.swift in Sources */,
+				014EF526237731B40078D534 /* BookViewController.swift in Sources */,
+				01E1C01E236E330800C6A5FB /* GeoPlace.swift in Sources */,
 				01E1BFFD236E307000C6A5FB /* SceneDelegate.swift in Sources */,
+				01E1C021236E330800C6A5FB /* ScriptureRenderer.swift in Sources */,
+				01E1C028236E330800C6A5FB /* GeoTag.swift in Sources */,
 				01E1BFFF236E307000C6A5FB /* MasterViewController.swift in Sources */,
+				01E1C027236E330800C6A5FB /* Scripture.swift in Sources */,
+				01E1C024236E330800C6A5FB /* GeoPlaceCollector.swift in Sources */,
+				01E1C029236E330800C6A5FB /* GeoCategory.swift in Sources */,
+				01E1C01F236E330800C6A5FB /* String+Extensions.swift in Sources */,
 				01E1C001236E307000C6A5FB /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +418,7 @@
 		};
 		01E1C00E236E307200C6A5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95151487817796F64517F672 /* Pods-Project 3 Version 1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -303,6 +436,7 @@
 		};
 		01E1C00F236E307200C6A5FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C16A73606191A7E0A5D145C4 /* Pods-Project 3 Version 1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
