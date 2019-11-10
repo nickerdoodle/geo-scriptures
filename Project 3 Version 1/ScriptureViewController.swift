@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import WebKit
 
 class ScriptureViewController: UIViewController {
 
-    @IBOutlet weak var scriptureLabel: UILabel!
+    //@IBOutlet weak var scriptureLabel: UILabel!
+    @IBOutlet weak var webView: WKWebView!
     
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
@@ -31,8 +33,9 @@ class ScriptureViewController: UIViewController {
         
         scripture = GeoDatabase.shared.versesForScriptureBookId(BookViewController.selectedBook, ChapterViewController.selectedChapter)
         
-        scriptureLabel.text = ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
-        
+        //scriptureLabel.text = ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
+        webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
+, baseURL: nil)
         
         if let split = splitViewController {
             let controllers = split.viewControllers
