@@ -8,16 +8,16 @@
 
 import UIKit
 
-class BookViewController: UITableViewController {
+class ChapterViewController: UITableViewController {
 
     
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
-    var selectedVolume: Int? = nil
-    static var selectedBook: Int = Int()
+    var selectedBook: Int? = nil
+    static var selectedChapter: Int = Int()
     
-    var books: [Book] = [Book]()
+    var book: Book = Book()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,9 @@ class BookViewController: UITableViewController {
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         //navigationItem.rightBarButtonItem = addButton
         
-        selectedVolume = MasterViewController.selectedVolume
-        if let volume = selectedVolume{
-            books = GeoDatabase.shared.booksForParentId(volume)
+        selectedBook = BookViewController.selectedBook
+        if let chosenBook = selectedBook{
+            book = GeoDatabase.shared.bookForId(chosenBook)
         }
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -62,8 +62,6 @@ class BookViewController: UITableViewController {
                 detailViewController = controller
             }
         }
-        
-        
     }
 
     // MARK: - Table View
@@ -74,17 +72,22 @@ class BookViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return objects.count
+        if let numChapters = book.numChapters{
+            return numChapters
+        }
+        else{
+            return 0
+        }
         
-        return books.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(selectedVolume!)
+        print(selectedBook!)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         //let object = objects[indexPath.row] as! NSDate
         //cell.textLabel!.text = object.description
-        let volume = books[indexPath.row]
-        cell.textLabel!.text = volume.fullName
+        //let chapter = book[indexPath.row]
+        cell.textLabel!.text = "Chapter \(indexPath.row + 1)"
         return cell
     }
 
@@ -104,7 +107,7 @@ class BookViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Grab the correct volume to send to next table
-        BookViewController.selectedBook = books[indexPath.row].id
+        ChapterViewController.selectedChapter = indexPath.row + 1
         //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
         
     }

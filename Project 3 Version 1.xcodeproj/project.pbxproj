@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		014EF526237731B40078D534 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF525237731B40078D534 /* BookViewController.swift */; };
+		014EF528237769BC0078D534 /* ChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF527237769BC0078D534 /* ChapterViewController.swift */; };
+		014EF52A237778800078D534 /* ScriptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF529237778800078D534 /* ScriptureViewController.swift */; };
 		01E1BFFB236E307000C6A5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFA236E307000C6A5FB /* AppDelegate.swift */; };
 		01E1BFFD236E307000C6A5FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFC236E307000C6A5FB /* SceneDelegate.swift */; };
 		01E1BFFF236E307000C6A5FB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFE236E307000C6A5FB /* MasterViewController.swift */; };
@@ -33,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		014EF525237731B40078D534 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		014EF527237769BC0078D534 /* ChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewController.swift; sourceTree = "<group>"; };
+		014EF529237778800078D534 /* ScriptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptureViewController.swift; sourceTree = "<group>"; };
 		01E1BFF7236E307000C6A5FB /* Project 3 Version 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 3 Version 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E1BFFA236E307000C6A5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01E1BFFC236E307000C6A5FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				01E1C007236E307200C6A5FB /* LaunchScreen.storyboard */,
 				01E1C00A236E307200C6A5FB /* Info.plist */,
 				014EF525237731B40078D534 /* BookViewController.swift */,
+				014EF527237769BC0078D534 /* ChapterViewController.swift */,
+				014EF529237778800078D534 /* ScriptureViewController.swift */,
 			);
 			path = "Project 3 Version 1";
 			sourceTree = "<group>";
@@ -268,8 +274,10 @@
 				01E1BFFB236E307000C6A5FB /* AppDelegate.swift in Sources */,
 				014EF526237731B40078D534 /* BookViewController.swift in Sources */,
 				01E1C01E236E330800C6A5FB /* GeoPlace.swift in Sources */,
+				014EF528237769BC0078D534 /* ChapterViewController.swift in Sources */,
 				01E1BFFD236E307000C6A5FB /* SceneDelegate.swift in Sources */,
 				01E1C021236E330800C6A5FB /* ScriptureRenderer.swift in Sources */,
+				014EF52A237778800078D534 /* ScriptureViewController.swift in Sources */,
 				01E1C028236E330800C6A5FB /* GeoTag.swift in Sources */,
 				01E1BFFF236E307000C6A5FB /* MasterViewController.swift in Sources */,
 				01E1C027236E330800C6A5FB /* Scripture.swift in Sources */,

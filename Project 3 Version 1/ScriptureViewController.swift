@@ -8,16 +8,16 @@
 
 import UIKit
 
-class BookViewController: UITableViewController {
+class ScriptureViewController: UIViewController {
 
+    @IBOutlet weak var scriptureLabel: UILabel!
     
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
-    var selectedVolume: Int? = nil
-    static var selectedBook: Int = Int()
-    
-    var books: [Book] = [Book]()
+    var selectedChapter: Int? = nil
+    //static var selectedChapter: Int = Int()
+    var scripture: [Scripture] = [Scripture]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +27,20 @@ class BookViewController: UITableViewController {
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         //navigationItem.rightBarButtonItem = addButton
         
-        selectedVolume = MasterViewController.selectedVolume
-        if let volume = selectedVolume{
-            books = GeoDatabase.shared.booksForParentId(volume)
-        }
+        selectedChapter = ChapterViewController.selectedChapter
+        
+        scripture = GeoDatabase.shared.versesForScriptureBookId(BookViewController.selectedBook, ChapterViewController.selectedChapter)
+        
+        scriptureLabel.text = ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
+        
+        
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    /*override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
@@ -47,12 +50,12 @@ class BookViewController: UITableViewController {
         objects.insert(NSDate(), at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-    }
+    }*/
 
     // MARK: - Segues
     //Edit this for selecting the books of the volume
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        /*if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let object = objects[indexPath.row] as! NSDate
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
@@ -61,34 +64,37 @@ class BookViewController: UITableViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
                 detailViewController = controller
             }
-        }
-        
-        
+        }*/
     }
 
     // MARK: - Table View
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    /*override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
+    }*/
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    /*override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return objects.count
+        if let numChapters = book.numChapters{
+            return numChapters
+        }
+        else{
+            return 0
+        }
         
-        return books.count
-    }
+    }*/
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(selectedVolume!)
+    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(selectedBook!)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         //let object = objects[indexPath.row] as! NSDate
         //cell.textLabel!.text = object.description
-        let volume = books[indexPath.row]
-        cell.textLabel!.text = volume.fullName
+        //let chapter = book[indexPath.row]
+        cell.textLabel!.text = "Chapter \(indexPath.row + 1)"
         return cell
-    }
+    }*/
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    /*override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
@@ -104,10 +110,10 @@ class BookViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Grab the correct volume to send to next table
-        BookViewController.selectedBook = books[indexPath.row].id
+        ChapterViewController.selectedChapter = indexPath.row + 1
         //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
         
-    }
+    }*/
 
 
 }
