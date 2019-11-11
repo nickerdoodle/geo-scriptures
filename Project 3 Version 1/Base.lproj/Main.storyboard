@@ -183,7 +183,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="mfN-mj-d0Y" kind="showDetail" identifier="showScriptureViewController" id="6Ud-p2-5xN"/>
+                                    <segue destination="mfN-mj-d0Y" kind="show" identifier="showScriptureViewController" id="6Ud-p2-5xN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
