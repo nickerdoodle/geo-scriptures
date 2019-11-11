@@ -31,6 +31,8 @@ class ChapterViewController: UITableViewController {
         if let chosenBook = selectedBook{
             book = GeoDatabase.shared.bookForId(chosenBook)
         }
+        
+        self.title = book.backName
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -87,7 +89,12 @@ class ChapterViewController: UITableViewController {
         //let object = objects[indexPath.row] as! NSDate
         //cell.textLabel!.text = object.description
         //let chapter = book[indexPath.row]
-        cell.textLabel!.text = "Chapter \(indexPath.row + 1)"
+        var heading = "Chapter"
+        if selectedBook == 302{
+            heading = "Section"
+        }
+        
+        cell.textLabel!.text = "\(heading) \(indexPath.row + 1)"
         return cell
     }
 

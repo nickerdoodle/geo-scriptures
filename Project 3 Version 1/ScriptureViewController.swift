@@ -29,11 +29,11 @@ class ScriptureViewController: UIViewController {
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         //navigationItem.rightBarButtonItem = addButton
         
+        
         selectedChapter = ChapterViewController.selectedChapter
-        
+        self.title = "\(GeoDatabase.shared.bookForId(BookViewController.selectedBook).backName) \(ChapterViewController.selectedChapter)"
         scripture = GeoDatabase.shared.versesForScriptureBookId(BookViewController.selectedBook, ChapterViewController.selectedChapter)
-        
-        //scriptureLabel.text = ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
+
         webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
 , baseURL: nil)
         

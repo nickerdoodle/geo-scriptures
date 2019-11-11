@@ -89,7 +89,9 @@ class ScriptureRenderer {
 
         if let collector = geoPlaceCollector {
             collector.setGeocodedPlaces(collectedGeocodedPlaces)
+            print(collector)
         }
+        print(collectedGeocodedPlaces)
 
         return page.convertToHtmlEntities()
     }

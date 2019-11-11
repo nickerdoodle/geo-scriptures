@@ -30,7 +30,9 @@ class BookViewController: UITableViewController {
         selectedVolume = MasterViewController.selectedVolume
         if let volume = selectedVolume{
             books = GeoDatabase.shared.booksForParentId(volume)
+            self.title = GeoDatabase.shared.bookForId(volume).backName
         }
+        
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
