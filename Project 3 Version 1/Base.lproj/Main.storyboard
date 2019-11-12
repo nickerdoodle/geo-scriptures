@@ -244,7 +244,7 @@
         <!--Map-->
         <scene sceneID="FZZ-6Y-xWc">
             <objects>
-                <viewController id="our-Sk-tUG" sceneMemberID="viewController">
+                <viewController id="our-Sk-tUG" customClass="MapViewController" customModule="Project_3_Version_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ccI-rs-Mt7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,6 +263,9 @@
                         <viewLayoutGuide key="safeArea" id="Ar2-Be-Lih"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="s2i-Cn-OA6"/>
+                    <connections>
+                        <outlet property="mapView" destination="ilP-Tq-fHo" id="ehU-4F-6RT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5r-RP-Stb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

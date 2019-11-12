@@ -67,7 +67,7 @@ class ScriptureRenderer {
         let book = GeoDatabase.shared.bookForId(bookId)
 
         collectedGeocodedPlaces = [GeoPlace]()
-
+        print(collectedGeocodedPlaces)
         var page = """
                    <!doctype html>
                    <html>
@@ -84,13 +84,17 @@ class ScriptureRenderer {
                        </div>
                    </body>
                    \(scriptureScript)
+                    <script>document.addEventListener('click', function(){ window.webkit.messageHandlers.iosListener.postMessage('click clack!'); })</script>
                    </html>
                    """
 
         if let collector = geoPlaceCollector {
             collector.setGeocodedPlaces(collectedGeocodedPlaces)
+            print("in if")
+            
             print(collector)
         }
+        
         print(collectedGeocodedPlaces)
 
         return page.convertToHtmlEntities()
@@ -137,7 +141,7 @@ class ScriptureRenderer {
 
         return """
                \(verseText[..<startIndex])\
-               <a href="\(Constant.baseUrl)\(geoplace.id)">\
+                <a href="\(Constant.baseUrl)#\(geoplace.id)">\
                \(verseText[startIndex ..< endIndex])</a>\
                \(verseText[endIndex...])
                """

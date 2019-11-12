@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import MapKit
 
 class ScriptureViewController: UIViewController {
 
@@ -23,6 +24,21 @@ class ScriptureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       /* let config = WKWebViewConfiguration()
+        let source = "document.addEventListener('click', function(){ window.webkit.messageHandlers.iosListener.postMessage('click clack!'); })"
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        config.userContentController.addUserScript(script)
+        config.userContentController.add(self, name: "iosListener")
+        webView.configuration
+        webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)*/
+        
+        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            print("message: \(message.body)")
+            // and whatever other actions you want to take
+        }
+        
         // Do any additional setup after loading the view.
         //navigationItem.leftBarButtonItem = editButtonItem
 
@@ -34,8 +50,10 @@ class ScriptureViewController: UIViewController {
         self.title = "\(GeoDatabase.shared.bookForId(BookViewController.selectedBook).backName) \(ChapterViewController.selectedChapter)"
         scripture = GeoDatabase.shared.versesForScriptureBookId(BookViewController.selectedBook, ChapterViewController.selectedChapter)
 
+        //ScriptureRenderer.shared.injectGeoPlaceCollector(GeoPlaceCollector())
         webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
-, baseURL: nil)
+            , baseURL: nil)
+        
         
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -118,6 +136,9 @@ class ScriptureViewController: UIViewController {
         
     }*/
 
+    
+    
+    
 
 }
 
