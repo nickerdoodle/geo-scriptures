@@ -65,7 +65,11 @@ class ScriptureRenderer {
 
     func htmlForBookId(_ bookId: Int, chapter: Int) -> String {
         let book = GeoDatabase.shared.bookForId(bookId)
-
+        
+        
+        
+        injectGeoPlaceCollector(GeoCollector.shared)
+        
         collectedGeocodedPlaces = [GeoPlace]()
         print(collectedGeocodedPlaces)
         var page = """
@@ -88,11 +92,14 @@ class ScriptureRenderer {
                    </html>
                    """
 
+        GeoCollector.shared.setGeocodedPlaces(collectedGeocodedPlaces)
+        
         if let collector = geoPlaceCollector {
             collector.setGeocodedPlaces(collectedGeocodedPlaces)
             print("in if")
             
             print(collector)
+            ScriptureRenderer.shared.injectGeoPlaceCollector(collector)
         }
         
         print(collectedGeocodedPlaces)

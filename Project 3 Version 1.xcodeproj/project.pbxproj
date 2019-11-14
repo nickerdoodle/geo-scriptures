@@ -12,6 +12,7 @@
 		014EF52A237778800078D534 /* ScriptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF529237778800078D534 /* ScriptureViewController.swift */; };
 		014EF52C237A827E0078D534 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF52B237A827E0078D534 /* MapViewController.swift */; };
 		014EF52E237A8A120078D534 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF52D237A8A120078D534 /* MapAnnotation.swift */; };
+		014EF530237B060F0078D534 /* GeoCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF52F237B060F0078D534 /* GeoCollector.swift */; };
 		01E1BFFB236E307000C6A5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFA236E307000C6A5FB /* AppDelegate.swift */; };
 		01E1BFFD236E307000C6A5FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFC236E307000C6A5FB /* SceneDelegate.swift */; };
 		01E1BFFF236E307000C6A5FB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E1BFFE236E307000C6A5FB /* MasterViewController.swift */; };
@@ -41,6 +42,7 @@
 		014EF529237778800078D534 /* ScriptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptureViewController.swift; sourceTree = "<group>"; };
 		014EF52B237A827E0078D534 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		014EF52D237A8A120078D534 /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		014EF52F237B060F0078D534 /* GeoCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCollector.swift; sourceTree = "<group>"; };
 		01E1BFF7236E307000C6A5FB /* Project 3 Version 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 3 Version 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E1BFFA236E307000C6A5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01E1BFFC236E307000C6A5FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				01E1C01A236E330800C6A5FB /* Scripture.swift */,
 				01E1C014236E330700C6A5FB /* ScriptureRenderer.swift */,
 				01E1C012236E330700C6A5FB /* String+Extensions.swift */,
+				014EF52F237B060F0078D534 /* GeoCollector.swift */,
 			);
 			path = "Project Assets";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				01E1C029236E330800C6A5FB /* GeoCategory.swift in Sources */,
 				01E1C01F236E330800C6A5FB /* String+Extensions.swift in Sources */,
 				01E1C001236E307000C6A5FB /* DetailViewController.swift in Sources */,
+				014EF530237B060F0078D534 /* GeoCollector.swift in Sources */,
 				014EF52C237A827E0078D534 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

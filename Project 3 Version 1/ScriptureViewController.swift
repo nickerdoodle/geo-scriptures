@@ -10,11 +10,12 @@ import UIKit
 import WebKit
 import MapKit
 
-class ScriptureViewController: UIViewController {
+class ScriptureViewController: UIViewController, WKNavigationDelegate {
 
     //@IBOutlet weak var scriptureLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
     
+    static var scriptureId = String()
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
@@ -24,7 +25,8 @@ class ScriptureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //from class
+        webView.navigationDelegate = self
        /* let config = WKWebViewConfiguration()
         let source = "document.addEventListener('click', function(){ window.webkit.messageHandlers.iosListener.postMessage('click clack!'); })"
         let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
@@ -86,57 +88,38 @@ class ScriptureViewController: UIViewController {
                 detailViewController = controller
             }
         }*/
+        
+        if segue.identifier == "textGeoSegue"{
+            
+                MapViewController.textClicked = true
+            
+        }
     }
 
-    // MARK: - Table View
-
-    /*override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }*/
-
-    /*override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return objects.count
-        if let numChapters = book.numChapters{
-            return numChapters
+    //USE THE HYPERLINKED TEXT (A TAG'S BASEURL AND ID TO IDENTIFY WHICH WORDS HAVE LINKS AND CANCEL ITS FUNCTION TO ACT ON THE MAP FOR THE MARKER
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        //if let sourceFrame = navigationAction.targetFrame{
+        //print(navigationAction.sourceFrame)
+        print(navigationAction.request)
+        print(navigationAction.navigationType)
+        print(navigationAction.targetFrame!)
+        //}
+        
+        let request: String = "\(navigationAction.request)"
+        if request != "about:blank"{
+            let startOfDomain = request.index(request.startIndex, offsetBy: 37)
+            let range = startOfDomain..<request.endIndex
+            ScriptureViewController.scriptureId = String(request[range])
+            print(ScriptureViewController.scriptureId)
+            decisionHandler(.cancel)
+            self.performSegue(withIdentifier: "textGeoSegue", sender: self)
         }
         else{
-            return 0
+            decisionHandler(.allow)
         }
-        
-    }*/
 
-    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(selectedBook!)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //let object = objects[indexPath.row] as! NSDate
-        //cell.textLabel!.text = object.description
-        //let chapter = book[indexPath.row]
-        cell.textLabel!.text = "Chapter \(indexPath.row + 1)"
-        return cell
-    }*/
-
-    /*override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
     }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Grab the correct volume to send to next table
-        ChapterViewController.selectedChapter = indexPath.row + 1
-        //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
-        
-    }*/
-
-    
     
     
 

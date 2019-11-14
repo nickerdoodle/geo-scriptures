@@ -106,9 +106,7 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Volumes" id="Zdf-7t-Un8">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Rlu-gN-jxp"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Volumes" id="Zdf-7t-Un8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,9 +147,7 @@
                             <outlet property="delegate" destination="Kdf-9m-rLP" id="X0e-vv-xgK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Books" id="8o0-8q-jy0">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Zev-uU-MLu"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Books" id="8o0-8q-jy0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1V-ux-56A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -192,9 +188,7 @@
                             <outlet property="delegate" destination="eFF-LR-lew" id="GG9-8c-woJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Chapter" id="sbd-Dk-QVs">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="thH-J7-Pe0"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Chapter" id="sbd-Dk-QVs"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vzv-My-g0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,17 +223,18 @@
                     <navigationItem key="navigationItem" title="Scripture" id="PQR-pL-TWT">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="OfY-29-lC2">
                             <connections>
-                                <segue destination="Zab-q2-yYV" kind="showDetail" id="CdE-eb-jr7"/>
+                                <segue destination="Zab-q2-yYV" kind="showDetail" identifier="mapGeoSegue" id="CdE-eb-jr7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="webView" destination="qTX-da-OsH" id="gNV-cd-W4l"/>
+                        <segue destination="Zab-q2-yYV" kind="showDetail" identifier="textGeoSegue" id="cP1-3D-v0W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8GR-78-325" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6011.594202898551" y="-630.13392857142856"/>
+            <point key="canvasLocation" x="6088" y="-630"/>
         </scene>
         <!--Map-->
         <scene sceneID="FZZ-6Y-xWc">
@@ -262,7 +257,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ar2-Be-Lih"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="s2i-Cn-OA6"/>
+                    <navigationItem key="navigationItem" title="Map" id="s2i-Cn-OA6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="uPW-cp-vR1">
+                            <connections>
+                                <segue destination="Zab-q2-yYV" kind="showDetail" identifier="mapGeoSegue" id="pOi-Ku-qyG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="ilP-Tq-fHo" id="ehU-4F-6RT"/>
                     </connections>
@@ -363,4 +364,8 @@
             <point key="canvasLocation" x="6970" y="-630"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sNo-fv-YSt"/>
+        <segue reference="pOi-Ku-qyG"/>
+    </inferredMetricsTieBreakers>
 </document>
