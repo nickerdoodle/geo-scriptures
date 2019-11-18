@@ -12,6 +12,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    var detailItem: NSDate?
     
     @IBOutlet weak var mapView: MKMapView!
     var annotations: [MapAnnotation] = [MapAnnotation]()

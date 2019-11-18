@@ -14,20 +14,24 @@ class BookViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
-    var selectedVolume: Int? = nil
-    static var selectedBook: Int = Int()
+    var selectedVolume: Int?
+    var selectedBook: Int?
+    
+    var theVolume: Int = Int()
     
     var books: [Book] = [Book]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(selectedVolume!)
         // Do any additional setup after loading the view.
         //navigationItem.leftBarButtonItem = editButtonItem
 
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         //navigationItem.rightBarButtonItem = addButton
         
-        selectedVolume = MasterViewController.selectedVolume
+        //put back in
+        //selectedVolume = MasterViewController.selectedVolume
         if let volume = selectedVolume{
             books = GeoDatabase.shared.booksForParentId(volume)
             self.title = GeoDatabase.shared.bookForId(volume).backName
@@ -63,6 +67,16 @@ class BookViewController: UITableViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
                 detailViewController = controller
             }
+        }
+        if segue.identifier == "showChapterViewController"{
+            let destinationVC = segue.destination as? ChapterViewController
+            destinationVC?.selectedBook = sender as? Book
+            
+        }
+        
+        if segue.identifier == "showScriptureViewController"{
+            let destinationVC = segue.destination as? ScriptureViewController
+            destinationVC?.selection = sender as? (Book, Int)
         }
         
         
@@ -106,9 +120,30 @@ class BookViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Grab the correct volume to send to next table
-        BookViewController.selectedBook = books[indexPath.row].id
-        //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
         
+        var theBook: Book?
+        selectedBook = books[indexPath.row].id
+        
+        if let book = selectedBook{
+            theBook = GeoDatabase.shared.bookForId(book)
+        }
+        if let book = theBook{
+            if let numChapters = book.numChapters{
+                if numChapters < 2{
+                    self.performSegue(withIdentifier: "showScriptureViewController", sender: (book, book.numChapters))
+                }
+                else{
+                    self.performSegue(withIdentifier: "showChapterViewController", sender: book)
+                }
+            }
+            else{
+                self.performSegue(withIdentifier: "showScriptureViewController", sender: (book, 0))
+            }
+            
+            
+        }
+        
+
     }
 
 

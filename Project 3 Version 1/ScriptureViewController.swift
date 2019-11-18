@@ -18,8 +18,9 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
     static var scriptureId = String()
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
-
-    var selectedChapter: Int? = nil
+    var selection: (Book, Int)?
+    var selectedBook: Book?
+    var selectedChapter: Int?
     //static var selectedChapter: Int = Int()
     var scripture: [Scripture] = [Scripture]()
     
@@ -46,17 +47,66 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
 
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         //navigationItem.rightBarButtonItem = addButton
+    
         
+        //selectedChapter = ChapterViewController.selectedChapter
+        //if ChapterViewController.selectedChapter < 1{
+        print(selection!)
+        if let data = selection{
+            selectedBook = data.0
+            selectedChapter = data.1
+            scripture = GeoDatabase.shared.versesForScriptureBookId(data.0.id, data.1)
+        }
         
-        selectedChapter = ChapterViewController.selectedChapter
-        self.title = "\(GeoDatabase.shared.bookForId(BookViewController.selectedBook).backName) \(ChapterViewController.selectedChapter)"
-        scripture = GeoDatabase.shared.versesForScriptureBookId(BookViewController.selectedBook, ChapterViewController.selectedChapter)
-
-        //ScriptureRenderer.shared.injectGeoPlaceCollector(GeoPlaceCollector())
-        webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(BookViewController.selectedBook, chapter: ChapterViewController.selectedChapter)
-            , baseURL: nil)
+        if let book = selectedBook{
+            //let book: Book = GeoDatabase.shared.bookForId(selectedBook)
+            //self.title = "\(GeoDatabase.shared.bookForId(BookViewController.selectedBook).backName)"
+            
+            if let numChapters = book.numChapters{
+                if numChapters < 2{
+                    if numChapters == 1{
+                        self.title = book.backName
+                    }
+                    else{
+                       self.title = book.backName
+                    }
+                    webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(book.id, chapter: numChapters)
+                    , baseURL: nil)
+                }
+                else {
+                    if let chapter = selectedChapter{
+                        self.title = "\(book.backName) \(chapter)"
+                        webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(book.id, chapter: chapter)
+                        , baseURL: nil)
+                    }
+                }
+                
+            }
+            else{
+                self.title = book.backName
+                webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(book.id, chapter: 0)
+                , baseURL: nil)
+            }
+            
+            
+            //self.title = ScriptureRenderer.shared.titleForBook(book, ChapterViewController.selectedChapter, false)
+            
+        }
         
-        
+        else{
+            if let book = selectedBook{
+                if let numChapters = book.numChapters{
+                if numChapters < 1{
+                    self.title = book.backName
+                    webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(book.id, chapter: numChapters)
+                    , baseURL: nil)
+                }
+            }
+            
+            
+        }
+        }
+   
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -67,27 +117,15 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
-    @objc
-    func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }*/
+*/
 
     // MARK: - Segues
     //Edit this for selecting the books of the volume
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*if segue.identifier == "showDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
-                detailViewController = controller
-            }
-        }*/
+
+        if segue.identifier == "showScriptureViewController"{
+            print("success")
+        }
         
         if segue.identifier == "textGeoSegue"{
             

@@ -14,8 +14,8 @@ class ChapterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
-    var selectedBook: Int? = nil
-    static var selectedChapter: Int = Int()
+    var selectedBook: Book?
+    var selectedChapter: Int?
     
     var book: Book = Book()
     
@@ -27,9 +27,15 @@ class ChapterViewController: UITableViewController {
         //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         //navigationItem.rightBarButtonItem = addButton
         
-        selectedBook = BookViewController.selectedBook
+        print(selectedBook!)
+        
         if let chosenBook = selectedBook{
-            book = GeoDatabase.shared.bookForId(chosenBook)
+            book = GeoDatabase.shared.bookForId(chosenBook.id)
+            if let numChapters = book.numChapters{
+                if numChapters == 1{
+                    selectedChapter = 1
+                }
+            }
         }
         
         self.title = book.backName
@@ -64,6 +70,11 @@ class ChapterViewController: UITableViewController {
                 detailViewController = controller
             }
         }
+        
+        if segue.identifier == "showScriptureViewController"{
+            let destinationVC = segue.destination as? ScriptureViewController
+            destinationVC?.selection = sender as? (Book, Int)
+        }
     }
 
     // MARK: - Table View
@@ -90,7 +101,7 @@ class ChapterViewController: UITableViewController {
         //cell.textLabel!.text = object.description
         //let chapter = book[indexPath.row]
         var heading = "Chapter"
-        if selectedBook == 302{
+        if selectedBook?.id == 302{
             heading = "Section"
         }
         
@@ -114,8 +125,10 @@ class ChapterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Grab the correct volume to send to next table
-        ChapterViewController.selectedChapter = indexPath.row + 1
-        //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
+        selectedChapter = indexPath.row + 1
+        print(selectedBook!)
+        print(selectedChapter!)
+        self.performSegue(withIdentifier: "showScriptureViewController", sender: (selectedBook, selectedChapter))
         
     }
 

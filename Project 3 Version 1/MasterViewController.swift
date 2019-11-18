@@ -14,7 +14,9 @@ class MasterViewController: UITableViewController {
     var objects = [Any]()
 
     var volumes: [Book] = GeoDatabase.shared.getVolumes()
-    static var selectedVolume: Int = Int()
+    //static var selectedVolume: Int = Int()
+    var selectedVolume: Int = Int()
+    var theVolume: Int = Int()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -54,7 +56,14 @@ class MasterViewController: UITableViewController {
                 detailViewController = controller
             }
         }
-    }
+        
+        if segue.identifier == "showBookViewController"{
+            let destinationVC = segue.destination as? BookViewController
+            destinationVC?.selectedVolume = sender as? Int
+            }
+ 
+        }
+    
 
     // MARK: - Table View
 
@@ -92,10 +101,13 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Grab the correct volume to send to next table
-        MasterViewController.selectedVolume = volumes[indexPath.row].id
-        //self.performSegue(withIdentifier: "showBookViewController", sender: nil)
-        
+        selectedVolume = volumes[indexPath.row].id
+        self.performSegue(withIdentifier: "showBookViewController", sender: selectedVolume)
+
+
     }
+    
+    
 
 
 }

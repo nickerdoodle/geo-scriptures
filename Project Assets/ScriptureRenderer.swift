@@ -197,7 +197,7 @@ class ScriptureRenderer {
         return ""
     }
 
-    private func titleForBook(_ book: Book, _ chapter: Int, _ renderLongTitles: Bool) -> String {
+    func titleForBook(_ book: Book, _ chapter: Int, _ renderLongTitles: Bool) -> String {
         var title = renderLongTitles ? book.citeFull : book.citeAbbr
         let numChapters = book.numChapters ?? 0
 
