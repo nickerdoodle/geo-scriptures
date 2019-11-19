@@ -188,16 +188,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rey-kr-r1f"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Scripture" id="PQR-pL-TWT">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="OfY-29-lC2">
-                            <connections>
-                                <segue destination="our-Sk-tUG" kind="showDetail" identifier="mapGeoSegue" id="9js-hX-dre"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Scripture" id="PQR-pL-TWT"/>
                     <connections>
                         <outlet property="webView" destination="qTX-da-OsH" id="gNV-cd-W4l"/>
                         <segue destination="our-Sk-tUG" kind="showDetail" identifier="textGeoSegue" id="crJ-0N-Ccv"/>
+                        <segue destination="our-Sk-tUG" kind="showDetail" identifier="mapGeoSegue" id="gOn-TD-MyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8GR-78-325" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -228,7 +223,7 @@
                     <navigationItem key="navigationItem" title="Map" id="s2i-Cn-OA6">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="uPW-cp-vR1">
                             <connections>
-                                <segue destination="our-Sk-tUG" kind="showDetail" identifier="mapGeoSegue" id="wkM-eK-0WZ"/>
+                                <action selector="resetMap:" destination="our-Sk-tUG" id="wCM-9b-PjO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -258,7 +253,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dI3-zZ-zL1"/>
+        <segue reference="gOn-TD-MyI"/>
         <segue reference="8OX-jC-5SG"/>
     </inferredMetricsTieBreakers>
 </document>

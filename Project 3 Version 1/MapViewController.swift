@@ -18,6 +18,11 @@ class MapViewController: UIViewController {
     var annotations: [MapAnnotation] = [MapAnnotation]()
     static var textClicked = false
     
+    @IBAction func resetMap(_ sender: UIBarButtonItem) {
+        setMap()
+        //Set title here
+        
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
@@ -51,6 +56,12 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setMap()
+        
+        
+    }
+    
+    func setMap(){
         if !MapViewController.textClicked{
             mapView.showAnnotations(annotations, animated: true)
         }
@@ -62,8 +73,6 @@ class MapViewController: UIViewController {
             }
             MapViewController.textClicked = false
         }
-        
-        
     }
 
     

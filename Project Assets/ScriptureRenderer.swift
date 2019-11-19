@@ -72,6 +72,9 @@ class ScriptureRenderer {
         
         collectedGeocodedPlaces = [GeoPlace]()
         print(collectedGeocodedPlaces)
+        // Reset the places each time a new chapter is selected
+        GeoCollector.shared.geoCodedPlaces.removeAll()
+        
         var page = """
                    <!doctype html>
                    <html>

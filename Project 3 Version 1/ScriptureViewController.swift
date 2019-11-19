@@ -14,9 +14,9 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
 
     //@IBOutlet weak var scriptureLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
+    private weak var mapViewController: MapViewController?
     
     static var scriptureId = String()
-    var detailViewController: DetailViewController? = nil
     var objects = [Any]()
     var selection: (Book, Int)?
     var selectedBook: Book?
@@ -28,29 +28,15 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         //from class
         webView.navigationDelegate = self
-       /* let config = WKWebViewConfiguration()
-        let source = "document.addEventListener('click', function(){ window.webkit.messageHandlers.iosListener.postMessage('click clack!'); })"
-        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-        
-        config.userContentController.addUserScript(script)
-        config.userContentController.add(self, name: "iosListener")
-        webView.configuration
-        webView = WKWebView(frame: UIScreen.main.bounds, configuration: config)*/
-        
-        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+
+        /*func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
             print("message: \(message.body)")
             // and whatever other actions you want to take
-        }
+        }*/
         
-        // Do any additional setup after loading the view.
-        //navigationItem.leftBarButtonItem = editButtonItem
+        configureDetailViewController()
+        
 
-        //let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        //navigationItem.rightBarButtonItem = addButton
-    
-        
-        //selectedChapter = ChapterViewController.selectedChapter
-        //if ChapterViewController.selectedChapter < 1{
         print(selection!)
         if let data = selection{
             selectedBook = data.0
@@ -59,9 +45,7 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
         }
         
         if let book = selectedBook{
-            //let book: Book = GeoDatabase.shared.bookForId(selectedBook)
-            //self.title = "\(GeoDatabase.shared.bookForId(BookViewController.selectedBook).backName)"
-            
+           
             if let numChapters = book.numChapters{
                 if numChapters < 2{
                     if numChapters == 1{
@@ -87,10 +71,7 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
                 webView.loadHTMLString( ScriptureRenderer.shared.htmlForBookId(book.id, chapter: 0)
                 , baseURL: nil)
             }
-            
-            
-            //self.title = ScriptureRenderer.shared.titleForBook(book, ChapterViewController.selectedChapter, false)
-            
+       
         }
         
         else{
@@ -109,7 +90,10 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
    
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+                let mapVC = split.viewControllers.last as? MapViewController
+                //mapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? MapViewController
+            
+            //detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
 
@@ -131,6 +115,19 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
             
                 MapViewController.textClicked = true
             
+        }
+        
+        if segue.identifier == "mapGeoSegue" {
+            //if let indexPath = tableView.indexPathForSelectedRow {
+                
+                //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+                    
+            let controller = segue.destination as! MapViewController
+            
+                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                controller.navigationItem.leftItemsSupplementBackButton = true
+                mapViewController = controller
+            //}
         }
     }
 
@@ -159,7 +156,29 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
 
     }
     
+    private func configureDetailViewController(){
+        mapViewController = nil
+        if let splitVC = splitViewController{
+            if let navVC = splitVC.viewControllers.last as? UINavigationController{
+                mapViewController = navVC.topViewController as? MapViewController
+            }
+        }
+        
+        configureRightButton()
+    }
     
+    private func configureRightButton(){
+        if mapViewController == nil{
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Map", style: .plain, target: self, action: #selector(ScriptureViewController.showMap))
+        }
+        else{
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    @objc func showMap(){
+        performSegue(withIdentifier: "mapGeoSegue", sender: self)
+    }
 
 }
 

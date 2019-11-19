@@ -11,7 +11,7 @@ import UIKit
 class ChapterViewController: UITableViewController {
 
     
-    var detailViewController: DetailViewController? = nil
+    var mapViewController: MapViewController? = nil
     var objects = [Any]()
 
     var selectedBook: Book?
@@ -41,7 +41,10 @@ class ChapterViewController: UITableViewController {
         self.title = book.backName
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+                let mapVC = split.viewControllers.last as? MapViewController
+                //mapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? MapViewController
+            
+            //detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
 
@@ -60,15 +63,15 @@ class ChapterViewController: UITableViewController {
     // MARK: - Segues
     //Edit this for selecting the books of the volume
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+        if segue.identifier == "mapGeoSegue" {
+            //if let indexPath = tableView.indexPathForSelectedRow {
+                
+                //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+                let controller = segue.destination as! MapViewController
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
-                detailViewController = controller
-            }
+                mapViewController = controller
+            //}
         }
         
         if segue.identifier == "showScriptureViewController"{
