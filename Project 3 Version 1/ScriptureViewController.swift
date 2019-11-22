@@ -34,7 +34,8 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
             // and whatever other actions you want to take
         }*/
         
-        configureDetailViewController()
+        //trying this further down
+        //configureDetailViewController()
         
 
         print(selection!)
@@ -87,14 +88,23 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
             
         }
         }
+        
+        configureDetailViewController()
    
         if let split = splitViewController {
             let controllers = split.viewControllers
+            
                 let mapVC = split.viewControllers.last as? MapViewController
                 //mapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? MapViewController
             
             //detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //configureDetailViewController()
     }
 
     /*override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +119,7 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
 
         if segue.identifier == "showScriptureViewController"{
             print("success")
+              
         }
         
         if segue.identifier == "textGeoSegue"{
@@ -120,13 +131,16 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
         if segue.identifier == "mapGeoSegue" {
             //if let indexPath = tableView.indexPathForSelectedRow {
                 
-                //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+                let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
                     
-            let controller = segue.destination as! MapViewController
+            //let controller = segue.destination as! MapViewController
             
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                //controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                //controller.navigationItem.leftItemsSupplementBackButton = true
                 mapViewController = controller
+            mapViewController?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+            mapViewController?.navigationItem.leftItemsSupplementBackButton = true
+            mapViewController?.selection = selection
             //}
         }
     }
@@ -161,7 +175,17 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
         if let splitVC = splitViewController{
             if let navVC = splitVC.viewControllers.last as? UINavigationController{
                 mapViewController = navVC.topViewController as? MapViewController
+                if mapViewController != nil{
+                    print("it's the first")
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(ScriptureViewController.showMap))
+                    performSegue(withIdentifier: "mapGeoSegue", sender: (selectedBook, selectedChapter))
+                }
+                
             }
+            /*if let navVC = splitVC.viewControllers.last as? UIViewController{
+                print("it's the second")
+                performSegue(withIdentifier: "mapGeoSegue", sender: (selectedBook, selectedChapter))
+            }*/
         }
         
         configureRightButton()
@@ -173,11 +197,12 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
         }
         else{
             navigationItem.rightBarButtonItem = nil
+            
         }
     }
     
     @objc func showMap(){
-        performSegue(withIdentifier: "mapGeoSegue", sender: self)
+        performSegue(withIdentifier: "mapGeoSegue", sender: (selectedBook, selectedChapter))
     }
 
 }

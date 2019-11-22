@@ -156,6 +156,7 @@
                     <navigationItem key="navigationItem" title="Chapter" id="sbd-Dk-QVs"/>
                     <connections>
                         <segue destination="eH0-Yd-3Hv" kind="show" identifier="showScriptureViewController" id="8OX-jC-5SG"/>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="mapGeoSegue" id="RwR-Bh-xOJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vzv-My-g0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -191,8 +192,8 @@
                     <navigationItem key="navigationItem" title="Scripture" id="PQR-pL-TWT"/>
                     <connections>
                         <outlet property="webView" destination="qTX-da-OsH" id="gNV-cd-W4l"/>
-                        <segue destination="our-Sk-tUG" kind="showDetail" identifier="textGeoSegue" id="crJ-0N-Ccv"/>
-                        <segue destination="our-Sk-tUG" kind="showDetail" identifier="mapGeoSegue" id="gOn-TD-MyI"/>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="mapGeoSegue" id="ieo-Su-BtM"/>
+                        <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="textGeoSegue" id="Urn-cf-PJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8GR-78-325" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -221,9 +222,9 @@
                         <viewLayoutGuide key="safeArea" id="Ar2-Be-Lih"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="s2i-Cn-OA6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="uPW-cp-vR1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="aFc-1v-kw7">
                             <connections>
-                                <action selector="resetMap:" destination="our-Sk-tUG" id="wCM-9b-PjO"/>
+                                <action selector="resetMap:" destination="our-Sk-tUG" id="xGa-Bn-Q9e"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -253,7 +254,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gOn-TD-MyI"/>
+        <segue reference="RwR-Bh-xOJ"/>
         <segue reference="8OX-jC-5SG"/>
     </inferredMetricsTieBreakers>
 </document>

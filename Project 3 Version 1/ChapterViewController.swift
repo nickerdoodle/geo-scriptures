@@ -11,7 +11,7 @@ import UIKit
 class ChapterViewController: UITableViewController {
 
     
-    var mapViewController: MapViewController? = nil
+    weak var mapViewController: MapViewController?
     var objects = [Any]()
 
     var selectedBook: Book?
@@ -71,10 +71,34 @@ class ChapterViewController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
                 mapViewController = controller
+            
+            //added below
+                
+                mapViewController?.selection = sender as? (Book, Int)
             //}
         }
-        
+       //Didn't have this in before Thur night
         if segue.identifier == "showScriptureViewController"{
+            
+            /*if let splitVC = splitViewController{
+                if let navVC = splitVC.viewControllers.last as? UINavigationController{
+                    mapViewController = navVC.topViewController as? MapViewController
+                    if mapViewController != nil{
+                        //print("it's the first")
+                        
+                        performSegue(withIdentifier: "mapGeoSegue", sender: (selectedBook, selectedChapter))*/
+                        /*let controller = segue.destination as! MapViewController
+                        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                        controller.navigationItem.leftItemsSupplementBackButton = true
+                        mapViewController = controller*/
+                        
+                    /*}
+                    
+                }
+                
+            }*/
+            //End of stuff
+            
             let destinationVC = segue.destination as? ScriptureViewController
             destinationVC?.selection = sender as? (Book, Int)
         }
@@ -134,6 +158,8 @@ class ChapterViewController: UITableViewController {
         self.performSegue(withIdentifier: "showScriptureViewController", sender: (selectedBook, selectedChapter))
         
     }
+    
+    // TODO HAVE SPLIT VIEW CHECK IF THERE IS A MAPVIEW ON THE STACK. IF THERE ISNT ONE, NEED TO CREATE A NEW ONE. HAPPENS WHEN YOU SWITCH TO LANDSCAPE WHEN ON A CHAPTER
 
 
 }
