@@ -39,13 +39,7 @@ class ChapterViewController: UITableViewController {
         }
         
         self.title = book.backName
-        if let split = splitViewController {
-            let controllers = split.viewControllers
-                let mapVC = split.viewControllers.last as? MapViewController
-                //mapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? MapViewController
-            
-            //detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -58,11 +58,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         guard let topAsDetailController = secondaryAsNavController.topViewController as? MapViewController else { return false }
-        if topAsDetailController.detailItem == nil {
+        if let scriptureViewController = primaryViewController as? ScriptureViewController{
+            scriptureViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Map", style: .plain, target: self, action: #selector(ScriptureViewController.showMap))
+        }
+        /*if topAsDetailController.detailItem == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
             return true
+        }*/
+        return true
+    }
+    
+    
+    func splitViewController(_ splitViewController: UISplitViewController,
+     separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+
+     if let navVC = primaryViewController as? UINavigationController {
+        for controller in navVC.viewControllers {
+            if let controllerVC = controller as? UINavigationController {
+     // The only nav VC we push onto the master nav VC is our detail VC
+     // There are other conditions we could test, like the restoration ID
+                return controllerVC
+            }
         }
-        return false
+     }
+        //create a new nav controller with its embedded mapviewcontroller
+     let storyboard = UIStoryboard(name: "Main", bundle: nil)
+     let detailView = storyboard.instantiateViewController(withIdentifier: "MapNav")
+        detailView.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        detailView.navigationItem.leftItemsSupplementBackButton = true
+
+     return detailView
     }
 
 }

@@ -12,7 +12,6 @@ import MapKit
 
 class ScriptureViewController: UIViewController, WKNavigationDelegate {
 
-    //@IBOutlet weak var scriptureLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
     private weak var mapViewController: MapViewController?
     
@@ -21,32 +20,20 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
     var selection: (Book, Int)?
     var selectedBook: Book?
     var selectedChapter: Int?
-    //static var selectedChapter: Int = Int()
     var scripture: [Scripture] = [Scripture]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //from class
+
         webView.navigationDelegate = self
-
-        /*func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            print("message: \(message.body)")
-            // and whatever other actions you want to take
-        }*/
-        
-        //trying this further down
-        //configureDetailViewController()
-        
-
-        print(selection!)
+    //grab the passed scripture info
         if let data = selection{
             selectedBook = data.0
             selectedChapter = data.1
             scripture = GeoDatabase.shared.versesForScriptureBookId(data.0.id, data.1)
         }
-        
+     // set the web page based on if it is a one chapter book or if a chapter was selected
         if let book = selectedBook{
-           
             if let numChapters = book.numChapters{
                 if numChapters < 2{
                     if numChapters == 1{
@@ -84,85 +71,55 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
                     , baseURL: nil)
                 }
             }
-            
-            
-        }
-        }
-        
-        configureDetailViewController()
-   
-        if let split = splitViewController {
-            let controllers = split.viewControllers
-            
-                let mapVC = split.viewControllers.last as? MapViewController
-                //mapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? MapViewController
-            
-            //detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+         
         }
     }
-    
-    
+        
+        configureDetailViewController()
+
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         //configureDetailViewController()
     }
-
-    /*override func viewWillAppear(_ animated: Bool) {
-        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        super.viewWillAppear(animated)
-    }
-*/
-
+    
     // MARK: - Segues
     //Edit this for selecting the books of the volume
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "showScriptureViewController"{
-            print("success")
-              
         }
         
+        //segue if a geoplace was tapped
         if segue.identifier == "textGeoSegue"{
-            
                 MapViewController.textClicked = true
-            
+            let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+            mapViewController = controller
+            mapViewController?.selection = selection
         }
-        
+       //segue for all the geoplaces in the chapter
         if segue.identifier == "mapGeoSegue" {
-            //if let indexPath = tableView.indexPathForSelectedRow {
-                
-                let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
-                    
-            //let controller = segue.destination as! MapViewController
-            
-                //controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                //controller.navigationItem.leftItemsSupplementBackButton = true
-                mapViewController = controller
+         
+            let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+
+            mapViewController = controller
             mapViewController?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             mapViewController?.navigationItem.leftItemsSupplementBackButton = true
             mapViewController?.selection = selection
-            //}
         }
     }
 
-    //USE THE HYPERLINKED TEXT (A TAG'S BASEURL AND ID TO IDENTIFY WHICH WORDS HAVE LINKS AND CANCEL ITS FUNCTION TO ACT ON THE MAP FOR THE MARKER
-    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        //if let sourceFrame = navigationAction.targetFrame{
-        //print(navigationAction.sourceFrame)
-        print(navigationAction.request)
-        print(navigationAction.navigationType)
-        print(navigationAction.targetFrame!)
-        //}
-        
+
         let request: String = "\(navigationAction.request)"
         if request != "about:blank"{
+            //grab the request and get substring of the scripture id
             let startOfDomain = request.index(request.startIndex, offsetBy: 37)
             let range = startOfDomain..<request.endIndex
             ScriptureViewController.scriptureId = String(request[range])
-            print(ScriptureViewController.scriptureId)
             decisionHandler(.cancel)
-            self.performSegue(withIdentifier: "textGeoSegue", sender: self)
+            self.performSegue(withIdentifier: "textGeoSegue", sender: (selectedBook, selectedChapter))
         }
         else{
             decisionHandler(.allow)
@@ -176,16 +133,12 @@ class ScriptureViewController: UIViewController, WKNavigationDelegate {
             if let navVC = splitVC.viewControllers.last as? UINavigationController{
                 mapViewController = navVC.topViewController as? MapViewController
                 if mapViewController != nil{
-                    print("it's the first")
                     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(ScriptureViewController.showMap))
                     performSegue(withIdentifier: "mapGeoSegue", sender: (selectedBook, selectedChapter))
                 }
                 
             }
-            /*if let navVC = splitVC.viewControllers.last as? UIViewController{
-                print("it's the second")
-                performSegue(withIdentifier: "mapGeoSegue", sender: (selectedBook, selectedChapter))
-            }*/
+
         }
         
         configureRightButton()

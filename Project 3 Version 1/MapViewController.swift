@@ -11,8 +11,7 @@ import WebKit
 import MapKit
 
 class MapViewController: UIViewController {
-    
-    var detailItem: NSDate?
+
     var selection: (Book, Int)?
     
     @IBOutlet weak var mapView: MKMapView!
@@ -22,7 +21,6 @@ class MapViewController: UIViewController {
     
     @IBAction func resetMap(_ sender: UIBarButtonItem) {
         setMap()
-        //Set title here
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -32,7 +30,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //Grab the geoplaces and created pins for them
             for place in GeoCollector.shared.geoCodedPlaces{
                 if annotations.contains(MapAnnotation(title: place.placename, subtitle: "\(place.latitude), \(place.longitude)", latitude: place.viewLatitude!, longitude: place.viewLongitude!))
                 {
@@ -46,32 +44,40 @@ class MapViewController: UIViewController {
             }
     
         mapView.addAnnotations(annotations)
-        print("end annotations")
-        for place in annotations{
-            print(place.title!)
-        }
-        
-        //mapView.setRegion(MKCoordinateRegion(, animated: )
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setMap()
-        
-        
+     
     }
-    
+  
+    //Sets the title for the map's nav controller and sets the pins
     func setMap(){
+        
         if !MapViewController.textClicked{
             mapView.showAnnotations(annotations, animated: true)
             MapViewController.titleForMap = selection
             if let mapTitle = MapViewController.titleForMap{
                 //Need to account for one chapter and 0 chapter books
-                self.title = "\(mapTitle.0.backName) \(mapTitle.1)"
+                if let numChapters = selection?.0.numChapters{
+                    if numChapters > 1{
+                        self.title = "\(mapTitle.0.backName) \(mapTitle.1)"
+                    }
+                        //books with one chapter
+                    else{
+                        self.title = "\(mapTitle.0.backName)"
+                    }
+                }
+                    //books with no chapters
+                else{
+                    self.title = "\(mapTitle.0.backName)"
+                }
+                
+                
             }
         }
+            //for clicking a place in the text
         else{
             let place = GeoDatabase.shared.geoPlaceForId(Int(ScriptureViewController.scriptureId)!)
             if let geoPlace = place{
@@ -81,6 +87,9 @@ class MapViewController: UIViewController {
             }
             MapViewController.textClicked = false
         }
+        
+        self.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        self.navigationItem.leftItemsSupplementBackButton = true
     }
 
     
