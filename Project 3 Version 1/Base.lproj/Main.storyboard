@@ -215,9 +215,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ilP-Tq-fHo" secondAttribute="bottom" id="6eK-Xt-Taw"/>
-                            <constraint firstItem="ilP-Tq-fHo" firstAttribute="leading" secondItem="Ar2-Be-Lih" secondAttribute="leading" id="Eu7-Gs-SQf"/>
+                            <constraint firstItem="ilP-Tq-fHo" firstAttribute="leading" secondItem="ccI-rs-Mt7" secondAttribute="leading" id="Eu7-Gs-SQf"/>
                             <constraint firstItem="ilP-Tq-fHo" firstAttribute="top" secondItem="Ar2-Be-Lih" secondAttribute="top" id="FHr-zb-W1s"/>
-                            <constraint firstItem="ilP-Tq-fHo" firstAttribute="trailing" secondItem="Ar2-Be-Lih" secondAttribute="trailing" id="iaw-Xv-qOB"/>
+                            <constraint firstItem="ilP-Tq-fHo" firstAttribute="trailing" secondItem="ccI-rs-Mt7" secondAttribute="trailing" id="iaw-Xv-qOB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ar2-Be-Lih"/>
                     </view>
