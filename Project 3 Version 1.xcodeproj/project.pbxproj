@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0144B53F2388DB27003FA776 /* Pods_Project_3_Version_1.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2A230A281E4C07BDBC3BDF2B /* Pods_Project_3_Version_1.framework */; };
+		0144B5402388DB5A003FA776 /* Pods-Project 3 Version 1.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 95151487817796F64517F672 /* Pods-Project 3 Version 1.debug.xcconfig */; };
+		0144B5412388DB68003FA776 /* Pods-Project 3 Version 1.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C16A73606191A7E0A5D145C4 /* Pods-Project 3 Version 1.release.xcconfig */; };
 		014EF526237731B40078D534 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF525237731B40078D534 /* BookViewController.swift */; };
 		014EF528237769BC0078D534 /* ChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF527237769BC0078D534 /* ChapterViewController.swift */; };
 		014EF52A237778800078D534 /* ScriptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EF529237778800078D534 /* ScriptureViewController.swift */; };
@@ -219,6 +222,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0144B5412388DB68003FA776 /* Pods-Project 3 Version 1.release.xcconfig in Resources */,
+				0144B5402388DB5A003FA776 /* Pods-Project 3 Version 1.debug.xcconfig in Resources */,
+				0144B53F2388DB27003FA776 /* Pods_Project_3_Version_1.framework in Resources */,
 				01E1C020236E330800C6A5FB /* DatabaseClassDiagram.pdf in Resources */,
 				01E1C026236E330800C6A5FB /* geocode.js in Resources */,
 				01E1C025236E330800C6A5FB /* geo.21.sqlite in Resources */,
